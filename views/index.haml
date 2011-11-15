@@ -1,0 +1,25 @@
+-# coding: UTF-8
+!!! XML
+!!!
+%html
+  %head
+    %meta{'http-equiv' => 'content', :content => 'text/html; charset=utf-8'}
+    %body
+      %p ATND
+      %div#container
+        %form{'method' => 'GET', 'action' => '/result'}
+          %input{'type' => 'text', 'name' => 'keyword', 'value' => @keyword}
+            %input{'type' => 'submit', 'value' => '検索'}
+      - if @data.empty? == false
+        %div#result
+          %p 結果
+          - @data.each do |data|
+            %a{'href' => "#{data['event_url']}"}
+              %dl
+                %dt
+                  ="#{data['title']}"
+                %dd
+                  %p= "#{data['started_at']}"
+                  %p= "#{data['accepted']} / #{data['limit']}"
+
+
